@@ -22,16 +22,16 @@ read -p "请输入提交信息: " commit_message
 git commit -m "$commit_message"
 
 # 检查是否配置了远程仓库
-remote_url=$(git config --get remote.origin.url)
+remote_url=$(git config --get remote.system.url)
 if [ -z "$remote_url" ]; then
   echo "未配置远程仓库，请输入远程仓库 URL："
   read -p "远程仓库 URL: " remote_url
-  git remote add origin $remote_url
+  git remote add system $remote_url
 fi
 
 # 推送更改到远程仓库
 echo "正在推送更改到远程仓库..."
-git push origin main
+git push system releases
 
 # 检查推送结果
 if [ $? -eq 0 ]; then
